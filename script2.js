@@ -1,2 +1,6 @@
-let YearUser = Number(prompt("Enter your year of birth"));
-console.log(2020 - YearUser);
+let a = prompt('Введите число гея');
+let i = 0;
+do {
+    i += 5;
+}
+while (i <= a);
