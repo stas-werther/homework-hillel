@@ -1,6 +1,13 @@
-let firtsNum = Number(prompt('Enter 1st number'));
-let secondNum = Number(prompt('Enter 2nd number'));
-let thirdNum = Number(prompt('Enter 3rd number'));
+let rand = Math.floor(Math.random() * 10);
+let answer;
 
-let average = (firtsNum + secondNum + thirdNum)/3;
-console.log(average);
+const askNum = function() {
+    answer = prompt('Gess a number!');
+}
+const checkNum = function() {
+    return answer !== null && Number(answer) !== rand;
+}
+console.log(rand);
+
+
+
