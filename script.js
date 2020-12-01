@@ -9,5 +9,11 @@ const checkNum = function() {
 }
 console.log(rand);
 
+const loopNum = function() {
+    while(checkNum()){
+        askNum();
+    }
+}
 
+loopNum();
 
