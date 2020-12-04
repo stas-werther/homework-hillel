@@ -1,6 +1,19 @@
-let firtsNum = Number(prompt('Enter 1st number'));
-let secondNum = Number(prompt('Enter 2nd number'));
-let thirdNum = Number(prompt('Enter 3rd number'));
+const character = {
+    name:'Sasuke',
+    key:'Uchiha',
+};
 
-let average = (firtsNum + secondNum + thirdNum)/3;
-console.log(average);
+const getObjStrLenght = (object) => {
+    let lenght = 0;
+    for (const key in object) {
+        if (object.hasOwnProperty(key)) {
+            const value = object[key];
+            if(typeof value !== 'string') continue;
+            lenght += value.length;
+        }
+    }
+    return lenght;
+};
+
+const strLenght = getObjStrLenght(character);
+console.log(strLenght);
