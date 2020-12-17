@@ -33,33 +33,34 @@ const grades = {
     this.salary = 1000;
     this.language = language;
     this.tasks = 0;
+    this.finishTasks = 0;
   
     this.addTask = () => {
       this.tasks++;
     };
   
     // Метод upgrade
-    this.upgrade = () => {
-      if(this.finishTask >= 5 && this.finishTask < 10 ) {
-        this.grade == grades.Middle;
+    this.upgrade = function () {
+      if(this.finishTasks >= 5 && this.finishTasks < 10 ) {
+        this.grade = grades.Middle;
         console.log('Ваш уровень Middle!');
-      } else if (this.tasks >= 10) {
-        this.grade == grades.Senior;
+      } else if (this.finishTasks >= 10) {
+        this.grade = grades.Senior;
         console.log('Ваш уровень Senior, самый высокий!)');
       } else {
-        this.grade == grades.Junior;
+        this.grade = grades.Junior;
         console.log('Недостаточно выполненных задач, ваш уровень Junior!');
       }
     };
 
     // Метод fine
-    this.fine = () => {
+    this.fine = function() {
       for (let key in listFines) {
-        if (this.listFines[key]) {
+        if (listFines[key]) {
           this.salary -= fines[key];
           console.log(`Ваш штраф ${fines[key]} за ${[key]}`);
-        } else if (this.listFines[key] == false) {
-          console.log('У вас нет штрафов)');
+        } else if (listFines[key] == false) {
+          console.log(`У вас нет штрафов за ${[key]})`);
 
         }
       }
@@ -69,6 +70,7 @@ const grades = {
     this.finishTask = () => {
       if (this.tasks > 0) {
         this.tasks--;
+        this.finishTasks++;
         this.salary +=
           (bonuses[this.language] || bonuses.default) * gradeTax[this.grade];
       }
@@ -84,9 +86,24 @@ const grades = {
   user.addTask();
   user.addTask();
   user.addTask();
+  user.addTask();
+  user.addTask();
+  user.addTask();
+  user.addTask();
+  user.addTask();
+
   
   user.finishTask();
   user.finishTask();
   user.finishTask();
   user.finishTask();
   user.finishTask();
+  user.finishTask();
+  user.finishTask();
+  user.finishTask();
+  user.finishTask();
+  
+
+
+  user.upgrade();
+  user.fine();
