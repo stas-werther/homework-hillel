@@ -57,4 +57,4 @@ Array.prototype.every = function(func) {
  
  
  alert(array.every((element) => element > 0));
- */
+ 
