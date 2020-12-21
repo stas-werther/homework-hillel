@@ -1,6 +1,31 @@
-let firtsNum = Number(prompt('Enter 1st number'));
-let secondNum = Number(prompt('Enter 2nd number'));
-let thirdNum = Number(prompt('Enter 3rd number'));
+const runner = {
+    $$runnerId: null,
+    $$tasks: [],
+    setSpeed: function (speed) {
+        this.stop();
+        this.start(speed);
+    },
+    add: function (task) {
+        this.$$tasks.push(task);
+    },
+    start: function (speed) {
+        let _this = this;
+        this.$$runnerId = setTimeout(function callback() {
+            _this.$$tasks.forEach(function (element) {
+                element();
+            })
+            _this.$$runnerId = setTimeout(callback, speed);
+        }, speed);
+    },
+    stop: function () {
+        clearTimeout(this.$$runnerId);
+    }
+  }
+  // Каждые 2 секунды Hello world
 
-let average = (firtsNum + secondNum + thirdNum)/3;
-console.log(average);
+  runner.add(function(){
+    console.log('Hello world!!!');
+  });
+
+  runner.start(2000);
+  
