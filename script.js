@@ -1,9 +1,8 @@
-function sum(...nums) { 
+const sum = (...nums) => { 
     return nums.reduce((acc,next) => acc + next); 
 };
-function curry(sum, ...nums) {
-    return function(...num) {
-        return sum(...num,...nums);
+const curry = (sum, ...nums) => {
+    return (...num) => {return sum(...num,...nums);
     };
 };
 
