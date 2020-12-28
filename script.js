@@ -1,4 +1,4 @@
-/*const Singleton = (() => {
+const Singleton = (() => {
     const uniqueKey = Symbol('instance');
     let instance;
     function Singleton(key) {
@@ -12,4 +12,4 @@
    return Singleton;
  })();
  
- console.log(Singleton.getInstance() === Singleton.getInstance())*/
+ console.log(Singleton.getInstance() === Singleton.getInstance())
