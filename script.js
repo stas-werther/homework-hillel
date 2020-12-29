@@ -2,9 +2,10 @@ const sum = (...nums) => {
     return nums.reduce((acc,next) => acc + next); 
 };
 const curry = (sum, ...nums) => {
-    return (...num) => {return sum(...num,...nums);
+    return function(...num) {
+        return sum(...num,...nums);
     };
-};
+};      
 
 const curriedFunction = curry(sum, 2,4); // запоминает для вызова sum 2 параметра
 
