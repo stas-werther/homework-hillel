@@ -23,8 +23,9 @@ function unique(arr) {
     return Array.from(new Set(arr));
 }
 
+
 for (let v of weapon) {
-    console.log(v);
+    console.log(...v);
 };
 
 
