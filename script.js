@@ -1,75 +1,74 @@
-function ControlPanel() {}
-
-ControlPanel.prototype.isReadyToMove = function () {
-  if (this.distance) {
-        return this.distance > 0;
-  } else if (this.squad) {
-        return this.squad.every((item) => item.isReadyToMove());
-  } throw "it is not MilitaryResource";
-};
-
-ControlPanel.prototype.isReadyToFight = function () {
-  if (this.health) {
-        return this.health > 0;
-  } else if (this.squad) {
-        return this.squad.every((item) => item.isReadyToFight());
-  } throw "it is not MilitaryResource";
-};
-
-ControlPanel.prototype.restore = function () {
-  this.restoreHealth();
-  this.restoreMove();
-};
-
-ControlPanel.prototype.restoreHealth = function () {
-  if (this.health) {
-        this.health = this.maxHealth;
-  } else if (this.squad) {
-        this.squad.forEach((item) => item.restoreHealth());
-  }
-};
-
-ControlPanel.prototype.restoreMove = function () {
-  if (this.distance) {
-      this.distance = this.maxDistance;
-  } else if (this.squad)
-    this.squad.forEach((item) => item.restoreMove());
-};
-
-ControlPanel.prototype.clone = function () {
-   const result = Object.create(
-     Object.getPrototypeOf(this),
-     Object.getOwnPropertyDescriptors(this)
-    );
-
-   if (result.squad) {
-        result.squad = this.squad.map((element) => element.clone());
-   }
-   return result;
-};
-
 function MilitaryResource(type, health, distance) {
   this.type = type;
   this.health = this.maxHealth = health;
   this.distance = this.maxDistance = distance;
 }
-MilitaryResource.prototype = Object.create(ControlPanel.prototype);
-MilitaryResource.prototype.constructor = MilitaryResource;
+
+  MilitaryResource.prototype.isReadyToMove = function() {
+    return this.distance > 0;
+  };
+
+  MilitaryResource.prototype.isReadyToFight = function() {
+    return this.health > 0;
+  };
+
+  MilitaryResource.prototype.restore = function() {
+    this.restoreHealth();
+    this.restoreMove;
+  };
+
+  MilitaryResource.prototype.restoreHealth = function() {
+    this.health = this.maxHealth;
+  };
+
+  MilitaryResource.prototype.restoreMove = function() {
+    this.distance = this.maxDistance;
+  };
+
+  MilitaryResource.prototype.clone = function() {
+    return new MilitaryResource(this.type, this.health, this.distance);
+  };
+
 
 function Squad(defaultResources) {
   this.squad = [];
   if (defaultResources) this.combineResources(defaultResources);
 }
 
-Squad.prototype = Object.create(ControlPanel.prototype);
+Squad.prototype = Object.create(MilitaryResource.prototype);
 Squad.prototype.constructor = Squad;
+
+Squad.prototype.isReadyToMove = function() {
+  return this.squad.every((item) => item.isReadyToMove());
+};
+
+Squad.prototype.isReadyToFight = function() {
+  return this.squad.every((item) => item.isReadyToFight());
+};
+
+Squad.prototype.restore = function() {
+  this.restoreHealth();
+  this.restoreMove();
+};
+
+Squad.prototype.restoreHealth = function() {
+  this.squad.forEach((item) => item.restoreHealth());
+};
+
+Squad.prototype.restoreMove = function() {
+  this.squad.forEach((item) => item.restoreMove());
+};
+
+Squad.prototype.clone = function() {
+  return new Squad(this.squad.map((el) => el.clone()));
+};
 
 Squad.prototype.getReadyToMoveResources = function () {
   return this.squad.map((element) => element.isReadyToMove && element);
 };
 
-Squad.prototype.combineResources = function (anyresourse) {
-  this.squad.push(...anyresourse);
+Squad.prototype.combineResources = function (anyResources) {
+  this.squad.push(...anyResources);
 };
 
 // Testing
