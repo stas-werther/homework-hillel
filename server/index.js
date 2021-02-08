@@ -3,6 +3,10 @@ const { readFile } = require('fs');
 const { resolve } = require('path');
 const http = require('http');
 const { join } = require('path');
+const lodash1 = require('lodash');
+const nice = require('./utils/script');
+
+
 
 const usersAddr = join(__dirname, './users.json');
 const levelsAddr = join(__dirname, './levels.json');
@@ -12,7 +16,7 @@ const levelsAddr = join(__dirname, './levels.json');
 const patchUser = (idUser, propertyUser, value) => {
     readJSON(usersAddr, (err, data) => {
         const indexUser = data.findIndex((item) => item.id == idUser);
-        data[indexUser, propertyUser] = value;
+        data[indexUser][propertyUser] = value;
         writeJSON(usersAddr, data, () => { });
     });
 };
@@ -25,7 +29,7 @@ const deleteUser = (idUser) => {
     readJSON(usersAddr, (err, data) => {
         const indexdeleteUser = data.findIndex((item) => item.id == idUser);
         delete data[indexdeleteUser];
-        writeJSON(usersAddr, data.filter(Object), () => { });
+        writeJSON(usersAddr, data, () => { });
     });
 };
 
@@ -69,16 +73,18 @@ const route = (req, res, data) => {
     switch (parsedUrl[0]) {
         
         case 'get':
-            get(req, res, parsedUrl);
+            get(req, res);
             break;
         case 'add':
             add(req, res, data);
             break;
-        case 'patchUser':
-            patchUser(2, 'name', 'Sas');
+        case 'patch':
+            patchUser(parsedUrl[1], data);
+            console.log('Patched');
             break;
-        case 'deleteUser':
-            deleteUser(1);
+        case 'delete':
+            deleteUser(parsedUrl[1]);
+            console.log('Deleted');
             break;
         default:
             res.end('Hi there!');
