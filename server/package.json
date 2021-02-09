@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "communication.js",
+  "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
     "webpack-cli": "^4.5.0",
