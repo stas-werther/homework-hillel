@@ -1,9 +1,10 @@
 const {resolve} = require('path');
 
 module.exports = {
-    entry: './index.js',
+    mode: 'development',
+    entry: './src/communication.js',
     output: {
+        path: resolve(__dirname,'./dist'),
         filename: 'bundle.js',
-        path: resolve(__dirname,'dist'),
     }
 }

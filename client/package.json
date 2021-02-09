@@ -11,7 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "webpack serve --open"
   },
   "author": "",
   "license": "MIT"
