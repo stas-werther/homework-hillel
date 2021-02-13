@@ -1,0 +1,29 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stas-werther/homework-hillel.git"
+  },
+  "keywords": [],
+  "author": "I",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stas-werther/homework-hillel/issues"
+  },
+  "homepage": "https://github.com/stas-werther/homework-hillel#readme",
+  "dependencies": {
+    "webpack-dev-server": "^3.11.2"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.1.0",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0"
+  }
+}
