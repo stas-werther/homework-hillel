@@ -1,0 +1,12 @@
+[{"id":1,
+  "name":"Vasya",
+  "level":1,
+  "address":{
+      "city":"Odesa","street":"Gogolya"}
+    },
+{"id":2,
+ "name":"User 2",
+ "level":3
+ },
+ {"id":3},
+ {"id":4}]
