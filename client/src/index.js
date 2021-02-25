@@ -1,20 +1,12 @@
-const { dataOfUser } = require('./dataUser');
+let body = document.querySelector("body");
+let vertically = document.querySelector(".horizontally");
+let horizontally = document.querySelector(".vertically");
 
-const app = document.getElementById('app');
-
-dataOfUser()
-  .then(function (resultOfGet) {
-    resultOfGet.forEach((el) => {
-        const card = document.createElement('div');
-        const cardHeader = document.createElement('div');
-        const cardBody = document.createElement('div');
-        card.className = "card";
-        cardHeader.className = "card__header";
-        cardBody.className = "card__body";
-        cardBody.innerText = `${el.level}`;
-        cardHeader.innerText = `${el.name}`;
-        app.appendChild(card);
-        card.appendChild(cardHeader);
-        card.appendChild(cardBody);
-    });
-  });
+body.onmousemove = (a) => {
+    let clientX = a.clientX
+    let clientY = a.clientY
+    vertically.style.left = `${clientX-3}px`;
+    vertically.style.top = `${clientY-24}px`;
+    horizontally.style.left = `${clientX-26}px`;
+    horizontally.style.top = `${clientY-3}px`;
+}
