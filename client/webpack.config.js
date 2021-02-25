@@ -1,19 +1,30 @@
 const { resolve } = require('path');
-const htmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = (env) =>{
-    console.log(env)
-    return {
-        mode: 'development',
-        entry: ['./src/index.js'],
-        output: {
-            path: resolve(__dirname, './dist'),
-            filename: 'index.js'
+module.exports = (env) => {
+  return {
+    mode: env.NODE_ENV || 'none',
+    entry: ['./src/script.js', './src/style.scss'],
+    output: {
+      path: resolve(__dirname, './dist'),
+      filename: '[name].[hash].js',
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(sa?)?css$/,
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
-        plugins: [
-            new htmlWebPackPlugin({
-                template: './index.html',
-            })
-        ],
-    }
-}
+      ],
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].[hash].css',
+      }),
+      new HtmlWebpackPlugin({
+        template: './index.html',
+      }),
+    ],
+  };
+};
